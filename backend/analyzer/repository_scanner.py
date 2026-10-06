@@ -79,11 +79,11 @@ class RepositoryScanner:
 
             if path.is_dir():
                 total_directories += 1
-                directories.append(str(relative_path))
+                directories.append(relative_path.as_posix())
 
             elif path.is_file():
                 total_files += 1
-                files.append(str(relative_path))
+                files.append(relative_path.as_posix())
 
                 extension = path.suffix.lower()
 
@@ -91,7 +91,7 @@ class RepositoryScanner:
                     extension_counts[extension] += 1
 
                 if path.name.lower() in IMPORTANT_FILES:
-                    important_files.append(str(relative_path))
+                    important_files.append(relative_path.as_posix())
 
         return {
             "project_name": self.repository_path.name,
