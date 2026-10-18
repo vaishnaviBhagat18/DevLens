@@ -1,0 +1,8 @@
+/* Additional controls for local ZIP uploads; existing DevLens styling remains unchanged. */
+.dl-source-tabs { display:flex; gap:8px; padding:4px; border-radius:10px; background:#f1f5fd; margin-bottom:24px; width:fit-content; max-width:100%; }
+.dl-source-tab { background:transparent; color:#566780; border:0; border-radius:8px; padding:11px 17px; font-weight:700; cursor:pointer; }
+.dl-source-tab.active { background:#fff; color:#355bd2; box-shadow:0 1px 5px rgba(30,50,90,.1); }
+.dl-source-tab:disabled { opacity:.55; cursor:wait; }
+.dl-zip-row { display:flex; gap:10px; align-items:center; }
+.dl-zip-row input[type=file] { min-width:0; flex:1; padding:13px; border:1px dashed #b5c7e8; border-radius:9px; background:#f8faff; font-size:13px; }
+@media (max-width:700px) { .dl-zip-row { flex-direction:column; align-items:stretch; } .dl-source-tabs { width:100%; } .dl-source-tab { flex:1; } }

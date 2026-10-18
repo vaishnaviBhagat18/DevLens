@@ -1,0 +1,572 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #080b14;
+  color: white;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.18), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.15), transparent 30%),
+    #080b14;
+}
+
+/* Background glow */
+
+.background-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.35;
+}
+
+.glow-one {
+  background: #4f46e5;
+  top: -100px;
+  left: -100px;
+}
+
+.glow-two {
+  background: #06b6d4;
+  bottom: -100px;
+  right: -100px;
+}
+
+/* Login Card */
+
+.login-card {
+  width: 420px;
+  padding: 45px;
+  border-radius: 20px;
+
+  background: rgba(17, 24, 39, 0.82);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.5);
+
+  backdrop-filter: blur(20px);
+
+  position: relative;
+  z-index: 2;
+}
+
+/* Logo */
+
+.logo {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.logo span {
+  color: #06b6d4;
+}
+
+/* Heading */
+
+.login-card h1 {
+  text-align: center;
+  font-size: 30px;
+  margin: 0 0 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+
+/* Inputs */
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 13px 15px;
+
+  background: #0f172a;
+
+  border: 1px solid #263244;
+
+  border-radius: 9px;
+
+  color: white;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.input-group input::placeholder {
+  color: #6b7280;
+}
+
+.input-group input:focus {
+  border-color: #06b6d4;
+
+  box-shadow:
+    0 0 0 3px rgba(6, 182, 212, 0.12);
+}
+
+/* Options */
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 12px;
+
+  margin-bottom: 25px;
+
+  color: #9ca3af;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.remember input {
+  accent-color: #06b6d4;
+}
+
+.forgot {
+  color: #06b6d4;
+  cursor: pointer;
+}
+
+/* Login button */
+
+.login-button {
+  width: 100%;
+
+  padding: 13px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: linear-gradient(
+    135deg,
+    #4f46e5,
+    #06b6d4
+  );
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  box-shadow:
+    0 8px 25px rgba(6, 182, 212, 0.2);
+}
+
+.login-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 30px rgba(6, 182, 212, 0.3);
+}
+
+/* Signup */
+
+.signup {
+  text-align: center;
+
+  margin-top: 25px;
+
+  font-size: 13px;
+
+  color: #9ca3af;
+}
+
+.signup span {
+  color: #06b6d4;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+/* Bottom text */
+
+.bottom-text {
+  position: absolute;
+
+  bottom: 20px;
+
+  color: #4b5563;
+
+  font-size: 12px;
+
+  letter-spacing: 0.5px;
+}
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+  .login-card {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .login-card h1 {
+    font-size: 25px;
+  }
+
+}
+.dashboard {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.navbar {
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  font-size: 15px;
+}
+
+.dashboard-content {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 30px;
+}
+
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.hero h2 {
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.hero button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.recent-projects {
+  margin-top: 30px;
+}
+
+.recent-projects h2 {
+  margin-bottom: 20px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.project-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.project-card h3 {
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  color: #6b7280;
+}
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0b1020, #111827, #172554);
+  color: #e5e7eb;
+}
+
+.dashboard .navbar {
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(8, 13, 26, 0.9);
+  border-bottom: 1px solid #26334d;
+}
+
+.dashboard .navbar h1 {
+  margin: 0;
+  color: #2563eb;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.dashboard .nav-links {
+  display: flex;
+  gap: 25px;
+  color: #475569;
+}
+
+.dashboard .dashboard-content {
+  max-width: 1100px;
+  margin: auto;
+  padding: 50px 30px;
+}
+
+.dashboard .hero {
+  text-align: center;
+  padding: 40px 20px 60px;
+}
+
+.dashboard .hero h2 {
+  color: #f8fafc;
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.dashboard .hero p {
+  color: #64748b;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.dashboard .hero button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dashboard .recent-projects h2 {
+  color: #f8fafc;
+}
+
+.dashboard .project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.dashboard .project-card {
+  background: rgba(30, 41, 59, 0.8);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+}
+
+.dashboard .project-card h3 {
+  color: #f1f5f9;
+}
+
+.dashboard .project-card p {
+  color: #64748b;
+}
+/* =========================
+   UPLOAD REPOSITORY PAGE
+   ========================= */
+
+.upload-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #080d1a, #0f172a, #172554);
+  color: #e5e7eb;
+}
+
+.upload-page .navbar {
+  height: 70px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(8, 13, 26, 0.9);
+  border-bottom: 1px solid #26334d;
+}
+
+.upload-page .navbar h1 {
+  margin: 0;
+  color: #60a5fa;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.upload-page .nav-links {
+  display: flex;
+  gap: 25px;
+  color: #cbd5e1;
+}
+
+.upload-content {
+  max-width: 800px;
+  margin: auto;
+  padding: 70px 30px;
+}
+
+.upload-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.upload-header h2 {
+  font-size: 38px;
+  color: #f8fafc;
+  margin-bottom: 15px;
+}
+
+.upload-header p {
+  color: #94a3b8;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.upload-card {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid #334155;
+  border-radius: 18px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.input-section label {
+  display: block;
+  margin-bottom: 10px;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.input-section input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #475569;
+  background: #0f172a;
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
+
+.input-section input:focus {
+  border-color: #60a5fa;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 30px 0;
+  color: #64748b;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #334155;
+}
+
+.file-section {
+  text-align: center;
+  border: 2px dashed #475569;
+  border-radius: 12px;
+  padding: 30px;
+}
+
+.upload-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.file-section h3 {
+  color: #f1f5f9;
+  margin-bottom: 8px;
+}
+
+.file-section p {
+  color: #94a3b8;
+}
+
+.file-section input {
+  margin-top: 15px;
+  color: #cbd5e1;
+}
+
+.analyze-button {
+  width: 100%;
+  margin-top: 30px;
+  padding: 15px;
+  border: none;
+  border-radius: 9px;
+  background: #2563eb;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.analyze-button:hover {
+  background: #3b82f6;
+  transform: translateY(-1px);
+}
