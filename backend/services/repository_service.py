@@ -7,6 +7,8 @@ from backend.analyzer.tech_detector import TechDetector
 from backend.analyzer.parsing.tree_sitter_parser import TreeSitterParser
 from backend.analyzer.dependency_extractor import DependencyExtractor
 from backend.analyzer.module_graph import ModuleGraph
+from backend.analyzer.context_builder import ContextBuilder
+from backend.services.ai_service import AIService
 
 
 class RepositoryService:
@@ -57,12 +59,12 @@ class RepositoryService:
                 if "error" in parsed_file:
                     continue
 
-                dependency_result = dependency_extractor.extract(
-                    source_file=parsed_file["file"],
-                    parsed_structure=parsed_file["structure"],
+                dependencies.append(
+                    dependency_extractor.extract(
+                        source_file=parsed_file["file"],
+                        parsed_structure=parsed_file["structure"],
+                    )
                 )
-
-                dependencies.append(dependency_result)
 
             # 5. Build module graph
             module_graph = ModuleGraph()
@@ -72,16 +74,26 @@ class RepositoryService:
                 dependencies=dependencies,
             )
 
-            # 6. Add code analysis to response
             result["code_analysis"] = {
                 "parsed_files": parsed_files,
                 "dependencies": dependencies,
                 "module_graph": graph,
             }
 
-            # Public repository information
+            # Repository metadata
             result["project_name"] = repository_name
             result["repository_url"] = repository_url
+
+            # 6. Build grounded AI context
+            context_builder = ContextBuilder(temp_dir)
+            ai_context = context_builder.build(result)
+
+            # 7. Generate project explanation
+            ai_service = AIService()
+
+            result["ai_insights"] = ai_service.analyze_project(
+                ai_context
+            )
 
             # Do not expose temporary server path
             result.pop("repository_path", None)

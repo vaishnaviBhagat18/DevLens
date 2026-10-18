@@ -16,6 +16,7 @@ class ContextBuilder:
         ".go",
         ".php",
         ".rb",
+        ".html",
     }
 
     def __init__(self, repository_path: str):
@@ -75,54 +76,53 @@ class ContextBuilder:
         }
 
     def _select_source_files(self, analysis: dict) -> list[str]:
-        parsed_files = analysis.get(
-            "code_analysis",
-            {},
-        ).get(
-            "parsed_files",
-            [],
-        )
-
+        files = analysis.get("files", [])
+        available_files = set(files)
         selected = []
 
-        # Prefer files participating in internal dependencies.
-        dependencies = analysis.get(
-            "code_analysis",
-            {},
-        ).get(
-            "dependencies",
-            [],
-        )
+        def add_file(path: str):
+            if not path or path in selected:
+                return
 
-        for dependency in dependencies:
-            source = dependency.get("file")
+            filename = Path(path).name.lower()
+            extension = Path(path).suffix.lower()
+
+            # Skip generated TypeScript declaration files
+            if filename.endswith(".d.ts"):
+                return
+
+            # Prefer TypeScript source over compiled JavaScript
+            if extension == ".js" and path[:-3] + ".ts" in available_files:
+                return
 
             if (
-                dependency.get("internal_dependencies")
-                and source
-                and source not in selected
+                extension not in self.SOURCE_EXTENSIONS
+                and not filename.startswith("readme")
             ):
-                selected.append(source)
+                return
 
-            for target in dependency.get(
-                "internal_dependencies",
-                [],
-            ):
-                if target not in selected:
-                    selected.append(target)
+            selected.append(path)
 
-        # Then include remaining parsed source files.
-        for parsed_file in parsed_files:
-            file_path = parsed_file.get("file")
+        # Prioritize connected modules
+        dependencies = analysis.get(
+            "code_analysis", {}
+        ).get("dependencies", [])
 
-            if not file_path:
-                continue
+        for dependency in dependencies:
+            if dependency.get("internal_dependencies"):
+                add_file(dependency.get("file"))
 
-            if Path(file_path).suffix.lower() not in self.SOURCE_EXTENSIONS:
-                continue
+            for target in dependency.get("internal_dependencies", []):
+                add_file(target)
 
-            if file_path not in selected:
-                selected.append(file_path)
+        # Include project documentation
+        for path in files:
+            if Path(path).name.lower().startswith("readme"):
+                add_file(path)
+
+        # Include remaining source and UI files
+        for path in files:
+            add_file(path)
 
         return selected[:self.MAX_SOURCE_FILES]
 
